@@ -120,65 +120,6 @@ def plot_media_(dados,city,state):
 
 #nome = 'reinan912'
 #senha = 'imaginando912'
-<<<<<<< HEAD
-
-
-#############requisição dos dados do IO.Brasil
-def get_io_data(city,state,name,password):
-    #nome = 
-    import requests as rq
-    import mechanicalsoup as ms
-    #from bs4 import beautifulsoup as bs
-    import mechanicalsoup
-
-    userAgent = 'Mozilla/5.0 (Linux; U; Android 4.4.2; zh-cn; GT-I9500 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko)Version/4.0 MQQBrowser/5.0 QQ-URL-Manager Mobile Safari/537.36'
-
-    br = mechanicalsoup.StatefulBrowser()
-    print('modificando os agentes')
-    br.session.headers = {"User-Agent":userAgent} #
-    br.session.headers.update({"User-Agent":userAgent }) 
-    
-    print('abrindo site...')
-    url = (f'https://brasil.io/dataset/covid19/caso_full/?state={state}&city={city}&format=csv')
-    res = br.get(url)
-
-    #salva os status da pagina
-    res.raise_for_status()
-    if ("entrar" in str(res.content)):
-        #print(res.content)
-        print('Atenção: login requerido!')
-        
-        br.open(url)
-        print(f'enviando dados de login [nome:{name}, senha: {password}]...')
-        
-        br.select_form()
-        br['username'] = name
-        br['password'] = password
-        br.launch_browser()
-        print('Login enviado!')
-        
-        res = br.submit_selected()
-        
-        if('tente novamente' in str(res.content)):
-            print("Login incorreto!")
-            return False 
-            
-        else:
-            print('Login aceito!')
-            filename = f'{city}.csv'
-            print(f'tentando baixar {filename}...')
-            
-            res = br.get(url)
-            res.raise_for_status()
-            
-            with open(filename,'wb') as file:
-                file.write(res.content)
-            print('verifica ai se foi')
-            
-            return filename
-
-=======
->>>>>>> db73238d3a13f5aebd59843439e10305c4cc3682
         
 
 def play_data_full(city,state,login):
