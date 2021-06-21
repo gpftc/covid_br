@@ -10,7 +10,7 @@
 <label>
 <!-- github dados -->
 <a href='#'><img src='https://img.shields.io/github/languages/code-size/gpftc/covid_br'></a>
-<a href='#'><img src='https://img.shields.io/github/commit-activity/m/gpftc/covid_br'></a>
+<a href='#'><img src='https://img.shields.io/github/commit-activity/w/gpftc/covid_br'></a>
 <a href='#'><img src='https://img.shields.io/github/last-commit/gpftc/covid_br'>
 </a>
 <br/>
