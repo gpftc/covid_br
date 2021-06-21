@@ -11,5 +11,6 @@ city = 'Petrolina PE'
 data_covid = cb.data_from_city(city)
 
 #plotando
-cb.plot_media_cases(data=data_covid,limit_period=40)
+cb.plot_media_cases(data=data_covid,limit_period=60,
+color_bar='#4ea286',color_line='black')
 

@@ -1,13 +1,17 @@
-import matplotlib.pyplot as plt
-from matplotlib import ticker
+
+from covidbr.log.logging import log
 from covidbr.log import date_base
 from covidbr.get_data import data_from_city as dc
 from covidbr.statistical_functions.bases import mov_average
 import numpy as np
-
+import matplotlib.pyplot as plt
+from matplotlib import ticker
 
 ############### plotting media in the maxim period limited ###################
-def plot_media_cases(data:dc,limit_period:int=0,title:str=None,show:bool=True,path_dir:str=f'data/'):
+def plot_media_cases(data:dc,limit_period:int=0,color_line:str='red',
+    title:str=None,show:bool=True,color_bar:str='black',
+    path_dir:str=f'data/',label_line:str='',label_bar:str='',
+    grid_y:bool=False,grid_x:bool=False):
     '''
     sumary:
 
@@ -36,15 +40,19 @@ def plot_media_cases(data:dc,limit_period:int=0,title:str=None,show:bool=True,pa
     city = data.city
     state = data.state
 
-    ax = dados_bar.plot(x='date',y='casos_diarios',kind='bar',color='black')
+    ax = dados_bar.plot(x='date',y='casos_diarios',label=label_bar,kind='bar',color=color_bar)
     print(f'encontrando a média móvel de casos confirmados em {city}-{state}...')
     
     #media = calcSma(casos_diarios,7)
     media_casos = media
     #print((media.max))
     plt.ylim((0,max(casos_diarios[-limit_period:])+10))
+    if grid_x:
+        plt.grid(axis='x')
+    if grid_y:
+        plt.grid(axis='y')
     date = dados_bar['date']
-    plt.plot(date,media,label='media móvel',c='red')
+    plt.plot(date,media,label=label_line,c=color_line)
     #plt.grid()
 
     ticklabels = ['']*len(dados_bar.index)
@@ -69,7 +77,10 @@ def plot_media_cases(data:dc,limit_period:int=0,title:str=None,show:bool=True,pa
 
 
 ################ tools for plotting of deaths data period limited ############### 
-def plot_media_deaths(data:dc,limit_period:int=0,title:str=None,show:bool=True,path_dir:str='data/'):
+def plot_media_deaths(data:dc,limit_period:int=0,
+title:str=None,show:bool=True,path_dir:str='data/',
+color_line:str='red',color_bar:str='black',
+label_line:str='',label_bar:str=''):
     '''
     sumary:
 
@@ -99,9 +110,9 @@ def plot_media_deaths(data:dc,limit_period:int=0,title:str=None,show:bool=True,p
     city = data.city
     state = data.state
 
-    ax = dados_bar.plot(x='date',y='mortes_diarias',kind='bar',color='black')
+    ax = dados_bar.plot(x='date',y='mortes_diarias',labell=label_bar,kind='bar',color=color_bar)
     date = dados_bar['date']
-    plt.plot(date,media,label='media movel',c='red')
+    plt.plot(date,media,label=label_line,c=color_line)
 
     ticklabels = ['']*len(dados_bar.index)
     ticklabels[::int(limit_period/10)] = dados_bar['date'][::int(limit_period/10)]
@@ -117,3 +128,4 @@ def plot_media_deaths(data:dc,limit_period:int=0,title:str=None,show:bool=True,p
 
     plt_casos = plt
     return plt_casos
+
