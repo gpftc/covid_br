@@ -1,5 +1,6 @@
-from covidbr.log.logging import log
-from covidbr.log.date import date_base
+from .logging import log
+from .date import date_base
+
 
 all = [log,date_base]
 

@@ -43,6 +43,7 @@ class data_from_city:
     
     
     def mining_statistical_data(self,limit_period:int=15):
+        self.date_update = self.date[-1]
         size = limit_period
         #### deaths ####
         ## making string ##
