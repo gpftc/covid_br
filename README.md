@@ -9,14 +9,18 @@
 <br/>
 <label>
 <!-- github dados -->
+<a href='https://python.org'><img src='https://img.shields.io/github/pipenv/locked/python-version/gpftc/covid_br'></a>
 <a href='#'><img src='https://img.shields.io/github/languages/code-size/gpftc/covid_br'></a>
-<a href='#'><img src='https://img.shields.io/github/commit-activity/w/gpftc/covid_br'></a>
+<a href='#'><img src='https://img.shields.io/github/commit-activity/m/gpftc/covid_br'></a>
 <a href='#'><img src='https://img.shields.io/github/last-commit/gpftc/covid_br'>
 </a>
 <br/>
 <!-- sites de pacotes -->
 <a href='https://pypi.org/project/covidbr/'><img src='https://img.shields.io/pypi/v/covidbr'></a>
 <a href='#'><img src='https://img.shields.io/pypi/wheel/covidbr'></a>
+<a href='#'><img alt="Dependent repos (via libraries.io)" src="https://img.shields.io/librariesio/dependent-repos/pypi/covidbr">
+</a>
+<a href='#'><img src='https://img.shields.io/pypi/implementation/covidbr'></a>
 <br/>
 <!-- redes sociais -->
 <a href='https://instagram.com/gpftc_isfertao'><img src='https://shields.io/badge/insta-gpftc_ifsertao-violet?logo=instagram&style=flat'></a>
@@ -25,5 +29,5 @@
 <p align='center'> <b>Library for data mining about covid-19 in brazilian cities 📈📊📚</b></p>
 ## Installation
 ```bash
-pip install covidbr -U
+$ pip install covidbr -U
 ```
