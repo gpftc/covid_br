@@ -2,8 +2,8 @@ from PIL import ImageFont
 from PIL import ImageDraw 
 from PIL import Image
 from covidbr.log.logging import log
-
-
+import os
+import requests as rq
 
 
 #### painel covidb #### 
@@ -11,6 +11,8 @@ def create_painel(data,limit_period:str=15,path_file:str='painel_covid.jpg'):
         log('creating the image')
         self = data
         size = limit_period
+        if not os.path.isfile('painel_covid.png'):
+            content_img = rq.get('')
 
         img = Image.open("painel_covid.jpg").convert('RGB')
         draw = ImageDraw.Draw(img)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from covidbr.io_api import login_io
+from covidbr.api_io.api_io_request import get_data_covid
 from covidbr.log import log
 from covidbr.statistical_functions.bases import mov_average, per_size,percent_basic
 
@@ -16,13 +16,17 @@ class data_from_city:
     def __init__(self,city_state:str):
         self.type = 'covid_dataframe'
         self.city,self.state = tuple(city_state.split())
-        self.api_io = login_io.API_io()
-        self.data = self.api_io.get_data_covid_from_city(city_and_state=city_state)
-
-        if(not os.path.isdir('data')):
-            os.system('mkdir data')
+        #self.api_io = login_io.API_io()
+        self.data_content = get_data_covid(city=self.city,state=self.state)
+        if(os.path.isdir('data')):
             self._path_cache = 'data/'
+            file_cache_data = self._path_cache+f'data_.csv'
+            with open(self._path_cache+f'data_.csv','wb') as file_data:
+                file_data.write(self.data_content)
+            self.data = pd.read_csv(file_cache_data)
+            os.system(f'rm {file_cache_data}')
         else:
+            os.system('mkdir data')
             self._path_cache = 'data/'
         
         log('organizando dados do DataFrame...')
