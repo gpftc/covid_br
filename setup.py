@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     readme = fh.read()
 
 setup(name='covidbr',
-    version='0.0.1401',
+    version='0.0.1402',
     url='https://github.com/gpftc/covid_br',
     license='MIT License',
     author='Reinan Br',

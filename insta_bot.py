@@ -1,25 +1,8 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-import os
+import covidbr as cb
 
-if(os.path.isdir('config')):
-    terminal = os.system
-    print('apagando pasta config...')
-
-    #apagando a pasta config
-    terminal('rm config/*')
-    terminal('rm config/log/*')
-    terminal('rmdir config/log')
-    terminal('rmdir config')
-
-from instabot import Bot
-#from instabot import InstaBot as 
-bot = Bot()
-
-username:str = 'gpftc_ifsertao'
-password:str = 'imaginando912'
-
-bot.login(username=username,password=password)#,use_cookie=True)
-#print((bot.get_timeline_medias()))
-#print(f'são {len(bot.followers)} seguidores no total')
-bot.upload_photo(photo='sample-out.jpg',caption='apenas um teste em #python')
+#data_covid = cb.data_from_city('Recife PE')
+#cb.create_painel(data=data_covid,path_file='painel_jua.jpg')
+cityes = ['paulo_afonso BA','casa_nova BA']
+for city in cityes:
+    data_covid = cb.data_from_city(city)
+    cb.publish_painel_covid(data=data_covid,user='gpftc_ifsertao',password='imaginando912')

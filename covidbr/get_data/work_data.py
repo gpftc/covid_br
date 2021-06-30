@@ -17,7 +17,8 @@ class data_from_city:
         self.type = 'covid_dataframe'
         self.city,self.state = tuple(city_state.split())
         #self.api_io = login_io.API_io()
-        self.data_content = get_data_covid(city=self.city,state=self.state)
+        data_covid = get_data_covid(city=self.city,state=self.state)
+        self.data_content, self.date_upload = data_covid['content_data'],data_covid['date_upload']
         if(os.path.isdir('data')):
             self._path_cache = 'data/'
             file_cache_data = self._path_cache+f'data_.csv'

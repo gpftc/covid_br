@@ -10,8 +10,10 @@ from matplotlib import ticker
 ############### plotting media in the maxim period limited ###################
 def plot_media_cases(data:dc,limit_period:int=0,color_line:str='red',
     title:str=None,show:bool=True,color_bar:str='black',
-    path_dir:str=f'data/',label_line:str='',label_bar:str='',
+    path_dir:str=f'',path_file:str='plot_media.png',label_line:str='',label_bar:str='',
     grid_y:bool=False,grid_x:bool=False):
+    plt.cla()
+    plt.clf()
     '''
     sumary:
 
@@ -61,12 +63,13 @@ def plot_media_cases(data:dc,limit_period:int=0,color_line:str='red',
     plt.gcf().autofmt_xdate()
 
     plt.legend()
+    plt.grid(axis='y')
     if title:
         plt.tile(f'{title}')
     elif(title=='pt-br'):
         plt.title(f'casos diarios em covid-19 em {city}-{state} nos últimos {limit_period} dias')
-    if path_dir:
-        plt.savefig(f'{path_dir}{city}_plot_cases_{abs(limit_period)}.jpg',dpi=900)
+    if path_file:
+        plt.savefig(f'{path_dir}{path_file}',dpi=900)
     if(show):
         plt.show()
 
@@ -78,9 +81,11 @@ def plot_media_cases(data:dc,limit_period:int=0,color_line:str='red',
 
 ################ tools for plotting of deaths data period limited ############### 
 def plot_media_deaths(data:dc,limit_period:int=0,
-title:str=None,show:bool=True,path_dir:str='data/',
+title:str=None,show:bool=True,path_dir:str='',path_file:str='',
 color_line:str='red',color_bar:str='black',
 label_line:str='',label_bar:str=''):
+    plt.cla()
+    plt.clf()
     '''
     sumary:
 
@@ -110,7 +115,7 @@ label_line:str='',label_bar:str=''):
     city = data.city
     state = data.state
 
-    ax = dados_bar.plot(x='date',y='mortes_diarias',labell=label_bar,kind='bar',color=color_bar)
+    ax = dados_bar.plot(x='date',y='mortes_diarias',label=label_bar,kind='bar',color=color_bar)
     date = dados_bar['date']
     plt.plot(date,media,label=label_line,c=color_line)
 
@@ -118,11 +123,11 @@ label_line:str='',label_bar:str=''):
     ticklabels[::int(limit_period/10)] = dados_bar['date'][::int(limit_period/10)]
     ax.xaxis.set_major_formatter(ticker.FixedFormatter(ticklabels))
     plt.gcf().autofmt_xdate()
-    plt.grid()
+    plt.grid(axis='y')
     plt.legend()
 
-    if path_dir:
-        plt.savefig(f'{path_dir}{city}_plot_deaths_{abs(limit_period)}.jpg',dpi=900)
+    if path_file:
+        plt.savefig(f'{path_dir}{path_file}',dpi=900)
     if(show):
         plt.show()
 
