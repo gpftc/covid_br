@@ -5,6 +5,15 @@ name = "pypi"
 
 [packages]
 requests = "*"
+pandas = "*"
+mechanicalsoup = "*"
+matplotlib = "*"
+osmnx = "*"
+numpy = "*"
+pillow = "*"
+psutil = "*"
+openpyxl = "*"
+instabot = "*"
 
 [dev-packages]
 
