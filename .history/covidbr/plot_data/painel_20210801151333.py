@@ -21,7 +21,6 @@ def painel_covid(data,limit_period:int=15,path_file:str='painel.jpg',
         img = Image.open(path_img).convert('RGB')
         size_image_base = img.size
         
-        ## plotting the media deaths ##
         plt = cb.plot_media_deaths(data=data, show=False,
                           color_bar='#8e43b5', color_line='black', limit_period=limit_period)
         plt.xticks([])
@@ -48,7 +47,7 @@ def painel_covid(data,limit_period:int=15,path_file:str='painel.jpg',
                             ,base_loc[0]+size_graph_x
                             ,base_loc[1]+size_graph_y))
         
-        ## plotting the media cases ##
+        
         plt_media_cases = cb.plot_media_cases(data=data, show=False,
                           color_bar='#4ea286', color_line='black', limit_period=limit_period)
         #plt_media_cases.grid()
@@ -75,7 +74,7 @@ def painel_covid(data,limit_period:int=15,path_file:str='painel.jpg',
                             ,base_loc[0]+size_graph_x
                             ,base_loc[1]+size_graph_y))
         
-        ## plotting the media from total cases ##
+        
         plt_media_cases_total = cb.plot_media_cases(data=data, show=False,
                           color_bar='#4ea286', color_line='black')
         #plt_media_cases_total.grid()
@@ -103,14 +102,13 @@ def painel_covid(data,limit_period:int=15,path_file:str='painel.jpg',
                             ,base_loc[0]+size_graph_x
                             ,base_loc[1]+size_graph_y))
         
-        ## plotting the media from deaths total ##
         plt_media_deaths_total = cb.plot_media_deaths(data=data, show=False,
                           color_bar='#8e43b5', color_line='black')
         plt_media_deaths_total.title(f'Média Móvel Total de Mortes',weight='bold')
         #plt_media_cases_total.grid()
         #plt_media_deaths_total.xticks([])
         path_graph_deaths = f'{painel_cache}plot_media_deaths_total_{data.city[:3]}.png'
-        plt_media_deaths_total.savefig(path_graph_deaths,dpi=200)
+        plt_media_deaths_total.savefig(path_graph_cases,dpi=200)
         img_graph = Image.open(path_graph_cases).convert('RGB')
         data.mining_statistical_data(limit_period=limit_period)
         self = data
@@ -131,9 +129,8 @@ def painel_covid(data,limit_period:int=15,path_file:str='painel.jpg',
                             ,base_loc[0]+size_graph_x
                             ,base_loc[1]+size_graph_y))
 
-        ###############################################
-        ### Starting the creation from Painel Image ###
-        ###############################################
+
+        
         draw = ImageDraw.Draw(img)
         ## adding date update in the image ##
         font = ImageFont.truetype("arial_unicode.ttf",18)
