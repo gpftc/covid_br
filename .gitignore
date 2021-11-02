@@ -137,3 +137,10 @@ data
 tests
 cache_painel
 config
+cache_painel/
+config/
+data/
+tests/
+*.jpg
+.cache/
+
