@@ -2,11 +2,12 @@
 import numpy as np
 
 def per_size(lis,size):
-    init = float(lis[-(size)])
+    init = np.float(lis[-(size)])
   # print(init)
-    end = float(lis[-1])
+    end = np.float(lis[-1])
   # print(end)
-    return float((end-init)/init) * 100
+    init = 1 if init == 0 else init
+    return np.float(abs(end-init)/init) * 100
 
 
 def percent_basic(list_,size):

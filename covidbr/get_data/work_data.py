@@ -72,7 +72,7 @@ class data_from_city:
         self.all_deaths_string = ''.join(all_deaths_string)
         ## others estatistic of this ##
         self.deaths_movel = mov_average(self.mortes_diarias,7)
-        percent_deaths = per_size(self.deaths_movel,size)
+        percent_deaths = per_size(self.mortes,size)
         self.percent_deaths = round(percent_deaths,2)
         self.percent_all_deaths = percent_basic(self.mortes,size)
         param_per_deaths = 'up' if(percent_deaths > 0) else 'down'
@@ -88,7 +88,7 @@ class data_from_city:
         self.all_cases_string = ''.join(all_cases_string)
         ## others estimates of this ##
         self.cases_movel = mov_average(self.casos_diarios,7)
-        percent_cases = per_size(self.cases_movel,size)
+        percent_cases = per_size(self.casos,size)
         self.percent_cases = round(percent_cases,2)
         self.percent_all_cases = percent_basic(self.casos,size) 
         param_per_cases = 'up' if(percent_cases > 0) else 'down'
