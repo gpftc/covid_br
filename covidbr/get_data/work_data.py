@@ -55,7 +55,7 @@ class data_from_city:
         log('dados ok!')
         
         log('mining statistical data...')
-        self.mining_statistical_data(limit_period=15)
+        self.mining_statistical_data(limit_period=30)
         log('statistical data mined! ')
     
     
@@ -147,3 +147,66 @@ class data_from_city:
 
     def __str__(self):
         return str(self.dados)
+    
+    
+    def json_data(self):
+        #city and state
+        city = self.city
+        state = self.state
+        #date
+        date = self.date[-1]
+        #number days of pandemy
+        n_days = len(self.dados['casos'])
+        #number population
+        n_population = self.dados['population'][-1]
+        
+        ##cases##
+        #number cases
+        n_cases = self.dados['casos'][-1]
+        #24h
+        cases_24h = self.dados['casos_diarios'][-1]
+        #cases per all day 
+        cases_day_all = int(n_cases/n_days)
+        #avarage cresc
+        cresc_cases= self.percent_cases
+        #taxa size
+        taxa_cases = self.percent_all_cases
+        
+        ##deaths##
+        #number cases
+        n_deaths = self.dados['mortos'][-1]
+        #24h
+        deaths_24h = self.dados['mortes_diarias'][-1]
+        #cases per all day 
+        deaths_day_all = int(n_deaths/n_days)
+        #avarage cresc
+        cresc_deaths = self.percent_deaths
+        #taxa size
+        taxa_deaths = self.percent_all_deaths
+        
+        #mortality
+        mortality = round((n_deaths/n_cases)*100,2)
+        ##dict## 
+        info_json = {"date":date,
+                    "city":city,
+                    "state":state,
+                    "mortality":mortality,
+                    "n_population":n_population,
+                    "n_days":n_days,
+                    "cases":{"n":n_cases,
+                              "24h":cases_24h,
+                              "cresc":cresc_cases,
+                              "taxa":taxa_cases,
+                              "p_day_all":cases_day_all,
+                              },
+                    "deaths":{"n":n_deaths,
+                              "24h":deaths_24h,
+                              "cresc":cresc_deaths,
+                              "taxa":taxa_deaths,
+                              "p_day_all":deaths_day_all,
+                              }
+                    }
+        return info_json
+        
+        
+        

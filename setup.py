@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     readme = fh.read()
 
 setup(name='covidbr',
-    version='0.1.103',
+    version='0.1.1021',
     url='https://github.com/gpftc/covid_br',
     license='MIT License',
     author='Reinan Br',
@@ -15,4 +15,4 @@ setup(name='covidbr',
     keywords='covid-19 covid api data science',
     description=u'Library for data mining about covid-19 in brazilian cities',
     packages=find_packages(),
-    install_requires=['openpyxl','instabot','osmnx','numpy','matplotlib','pillow','mechanicalsoup','psutil','requests','pandas'],)
+    install_requires=['openpyxl','instabot','numpy','matplotlib','pillow','mechanicalsoup','psutil','requests','pandas'],)
