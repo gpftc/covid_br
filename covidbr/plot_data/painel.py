@@ -23,13 +23,13 @@ def painel_covid(data,limit_period:int=15,path_file:str='painel.jpg',
         #verification of path_img or font exists#
         #or needed download from a base#
         if not os.path.isfile(path_img):
-            content_img = rq.get('https://raw.githubusercontent.com/gpftc/covid_br/main/painel_base_covid.jpeg').content
+            content_img = rq.get('https://raw.githubusercontent.com/gpftc/covid_br/main/base/painel_covid.jpeg').content
             with open(path_img, 'wb') as file_img:
                 file_img.write(content_img)
         if not os.path.isfile('arial_unicode.ttf'):
-            content_img = rq.get('https://raw.githubusercontent.com/gpftc/covid_br/main/painel_base_covid.jpeg').content
-            with open(path_img, 'wb') as file_img:
-                file_img.write(content_img)
+            content_ttf= rq.get('https://github.com/gpftc/covid_br/raw/main/base/arial_unicode.ttf').content
+            with open('arial_unicode.ttf', 'wb') as file_ttf:
+                file_ttf.write(content_ttf)
         else:
             pass
        

@@ -45,20 +45,90 @@ $ pip install covidbr -U
 import covidbr as cb
 cb.show_console(True)
 
-place = 'Petrolina PE'
+place = 'Juazeiro BA'
 data_pet = cb.city(place)
 
 ```
 
-### publishing painel data from covid on the instagram
+### getting the light data and working with it
 
 ```py
-import covidbr as cb
-cb.show_console(True)
+dataset = data_city.dados
+dados
+```
 
-cityes = ['juazeiro BA','Petrolina PE']
-for city in cityes:
+```sh
+             casos  mortos  mortes_diarias  casos_diarios  population
+23/mar/2020      1       0               0              1      218162
+24/mar/2020      2       0               0              1      218162
+25/mar/2020      2       0               0              0      218162
+26/mar/2020      2       0               0              0      218162
+27/mar/2020      2       0               0              0      218162
+...            ...     ...             ...            ...         ...
+26/dez/2021  18752     417               0              0      218162
+27/dez/2021  18752     417               0              0      218162
+28/dez/2021  18752     417               0              0      218162
+29/dez/2021  18752     417               0              0      218162
+30/dez/2021  18752     417               0              0      218162
 
-    data_covid = cb.data_from_city(city)
-    cb.publish_painel_covid(data=data_covid,user='user_insta',password='password_insta')
+[648 rows x 5 columns]
+```
+getting the data of death's:
+```py
+mortos = dataset['mortos']
+mortos
+```
+
+```sh
+23/mar/2020      0
+24/mar/2020      0
+25/mar/2020      0
+26/mar/2020      0
+27/mar/2020      0
+              ... 
+26/dez/2021    417
+27/dez/2021    417
+28/dez/2021    417
+29/dez/2021    417
+30/dez/2021    417
+Name: mortos, Length: 648, dtype: int64
+```
+getting the data of case's:
+```py
+casos = dataset['casos']
+```
+
+```sh
+23/mar/2020        1
+24/mar/2020        2
+25/mar/2020        2
+26/mar/2020        2
+27/mar/2020        2
+               ...  
+26/dez/2021    18752
+27/dez/2021    18752
+28/dez/2021    18752
+29/dez/2021    18752
+30/dez/2021    18752
+Name: casos, Length: 648, dtype: int64
+```
+getting the mortality percent:
+```py
+perc_m = (mortos/casos)*100
+perc_m
+```
+
+```sh
+23/mar/2020    0.000000
+24/mar/2020    0.000000
+25/mar/2020    0.000000
+26/mar/2020    0.000000
+27/mar/2020    0.000000
+                 ...   
+26/dez/2021    2.223763
+27/dez/2021    2.223763
+28/dez/2021    2.223763
+29/dez/2021    2.223763
+30/dez/2021    2.223763
+Length: 648, dtype: float64
 ```

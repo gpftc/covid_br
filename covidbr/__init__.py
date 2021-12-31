@@ -8,7 +8,7 @@
 ########################
 
 from covidbr.log import logging
-from covidbr.api_io.api_io_request import get_data_covid,login_io
+from covidbr.api_io import get_data_covid,login_io
 from covidbr.get_data import data_from_city
 from covidbr.plot_data.plotting import plot_media_cases
 from covidbr.plot_data.plotting import plot_media_deaths
