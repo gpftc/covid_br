@@ -9,6 +9,7 @@ import numpy as np
 import os
 
 
+
 #api_io = login_io.API_io
 
 ############### tratamento de dados ############
@@ -30,18 +31,25 @@ class data_from_city:
         # log(f'city:{self.city} | state:{self.state}')
         # log('=+='*15)
         #self.api_io = login_io.API_io()
+        
+        self._path_cache = 'data/'
+        file_cache_data = self._path_cache+f'data_.csv'
+        
         data_covid = get_data_covid(city=self.city,state=self.state)
         self.data_content, self.date_upload = data_covid['content_data'],data_covid['date_upload']
+        
         if(os.path.isdir('data')):
-            self._path_cache = 'data/'
-            file_cache_data = self._path_cache+f'data_.csv'
             with open(self._path_cache+f'data_.csv','wb') as file_data:
                 file_data.write(self.data_content)
             self.data = pd.read_csv(file_cache_data)
             os.system(f'rm {file_cache_data}')
         else:
             os.system('mkdir data')
-            self._path_cache = 'data/'
+            with open(self._path_cache+f'data_.csv','wb') as file_data:
+                file_data.write(self.data_content)
+            self.data = pd.read_csv(file_cache_data)
+            os.system(f'rm {file_cache_data}')
+            
         
         log('organizing data for the making dataframe...')
         self.dados_dict = self.miner_data(self.data)

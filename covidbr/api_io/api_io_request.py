@@ -10,7 +10,7 @@
 #from sys import ps1
 from mechanicalsoup import browser
 import requests
-from covidbr.api_io.browser_slam import load_cookies, save_cookies
+from .browser_slam import load_cookies, save_cookies
 import os
 import pandas as pd
 from covidbr.log import date_base

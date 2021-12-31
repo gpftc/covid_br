@@ -1,3 +1,9 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+
+
+
 from covidbr.plot_data.plotting import plot_media_cases
 from PIL import ImageFont
 from PIL import ImageDraw 
@@ -13,6 +19,14 @@ def painel_covid(data,limit_period:int=15,path_file:str='painel.jpg',
                   path_img:str='painel_covid.jpg',show:bool=True,
                   save_cache:bool=True):
         city,state = data.city,data.state
+        
+        #verification of path_img exists#
+        #or needed download from a base#
+        if not os.path.isfile(path_img):
+            content_img = rq.get(url_img)
+
+        
+        
         painel_cache = 'cache_painel/'
         if save_cache:
             if not os.path.isdir(painel_cache):

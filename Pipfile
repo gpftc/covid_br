@@ -8,13 +8,10 @@ requests = "*"
 pandas = "*"
 mechanicalsoup = "*"
 matplotlib = "*"
-osmnx = "*"
 numpy = "*"
 pillow = "*"
-psutil = "*"
 openpyxl = "*"
-instabot = "*"
-twine = "*"
+
 
 [dev-packages]
 

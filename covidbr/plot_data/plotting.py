@@ -9,7 +9,7 @@ from matplotlib import ticker
 
 ############### plotting media in the maxim period limited ###################
 def plot_media_cases(data:dc,limit_period:int=0,color_line:str='red',
-    title:str=None,show:bool=True,color_bar:str='black',
+    title:str='pt-br',show:bool=True,color_bar:str='black',
     path_dir:str=f'',path_file:str='plot_media.png',label_line:str='',label_bar:str='',
     grid_y:bool=False,grid_x:bool=False):
     plt.cla()
@@ -42,7 +42,7 @@ def plot_media_cases(data:dc,limit_period:int=0,color_line:str='red',
     city = data.city
     state = data.state
 
-    ax = dados_bar.reset_index().plot(x='index',y='casos_diarios',label=label_bar,kind='bar',color=color_bar)
+    ax = dados_bar.reset_index().plot(x='index',y='casos_diarios',label='casos diários',kind='bar',color=color_bar)
     print(f'encontrando a média móvel de casos confirmados em {city}-{state}...')
     
     #media = calcSma(casos_diarios,7)
@@ -54,7 +54,7 @@ def plot_media_cases(data:dc,limit_period:int=0,color_line:str='red',
     if grid_y:
         plt.grid(axis='y')
     date = dados_bar.index
-    plt.plot(date,media,label=label_line,c=color_line)
+    plt.plot(date,media,label='variação móvel de casos',c=color_line)
     #plt.grid()
 
     ticklabels = ['']*len(dados_bar.index)
@@ -64,10 +64,9 @@ def plot_media_cases(data:dc,limit_period:int=0,color_line:str='red',
 
     plt.legend()
     plt.grid(axis='y')
-    if title:
-        plt.tile(f'{title}')
-    elif(title=='pt-br'):
+    if(title=='pt-br'):
         plt.title(f'casos diarios em covid-19 em {city}-{state} nos últimos {limit_period} dias')
+        
     if path_file:
         plt.savefig(f'{path_dir}{path_file}',dpi=900)
     if(show):
@@ -115,15 +114,18 @@ label_line:str='',label_bar:str=''):
     city = data.city
     state = data.state
 
-    ax = dados_bar.reset_index().plot(x='index',y='mortes_diarias',label=label_bar,kind='bar',color=color_bar)
+    ax = dados_bar.reset_index().plot(x='index',y='mortes_diarias',label='mortes diárias',kind='bar',color=color_bar)
+    #ax.legend()
     date = dados_bar.index
-    plt.plot(date,media,label=label_line,c=color_line)
-
+    plt.plot(date,media,label='variação móvel de mortes',c=color_line)
+    plt.legend()
     ticklabels = ['']*len(dados_bar.index)
     ticklabels[::int(limit_period/10)] = dados_bar.index[::int(limit_period/10)]
     ax.xaxis.set_major_formatter(ticker.FixedFormatter(ticklabels))
     plt.gcf().autofmt_xdate()
     plt.grid(axis='y')
+    plt.title(f'mortes diárias em covid-19 em {city}-{state} nos últimos {limit_period} dias')
+        
     plt.legend()
 
     if path_file:
