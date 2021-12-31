@@ -20,11 +20,19 @@ def painel_covid(data,limit_period:int=15,path_file:str='painel.jpg',
                   save_cache:bool=True):
         city,state = data.city,data.state
         
-        #verification of path_img exists#
+        #verification of path_img or font exists#
         #or needed download from a base#
         if not os.path.isfile(path_img):
-            content_img = rq.get(url_img)
-
+            content_img = rq.get('https://raw.githubusercontent.com/gpftc/covid_br/main/painel_base_covid.jpeg').content
+            with open(path_img, 'wb') as file_img:
+                file_img.write(content_img)
+        if not os.path.isfile('arial_unicode.ttf'):
+            content_img = rq.get('https://raw.githubusercontent.com/gpftc/covid_br/main/painel_base_covid.jpeg').content
+            with open(path_img, 'wb') as file_img:
+                file_img.write(content_img)
+        else:
+            pass
+       
         
         
         painel_cache = 'cache_painel/'
